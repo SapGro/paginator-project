@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 class Paginator:
-	''' This is a project i'm working on and which is still in developement, it's now specefic for help command formatting. I did it this way so that i can test it. The per_page function is not implemented yet.'''
+	''' This is a project i'm working on and which is still in developement, it's now specefic for help command formatting. I did it this way so that i can test it. The per_page part is not implemented yet.'''
 	def __init__(self, context,mapping ,per_page=9):
 		self.context = context
 		self.mapping = mapping
@@ -15,7 +15,7 @@ class Paginator:
 		
 	# Courotine to prepare the page
 	async def prepare_page(self, page):
-		# The dict which is going to hold all the commands and 
+		# The dict which is going to hold all the commands objects and 
 		# sort them by their cogs using indexes
 		dict = {}
 		# The mapping here is the mapping of the cogs of the bot
@@ -23,8 +23,8 @@ class Paginator:
 			# Skip cogs which are None 
 			if not cog or cog.qualified_name == 'Erreur':
 				continue
-			# Store the commands by their cogs in an array
-			# The key is the index of each page
+			# Store the  commands objects by their cogs in an array
+			# The key of the dict is the index which is the index of the page
 			dict[index] = [cog, cog.walk_commands()]
 		self.max_pages = len(dict)
 		# Get the page which we are looking for
